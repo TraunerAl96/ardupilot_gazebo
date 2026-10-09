@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="textured_ground">
+    <static>true</static>
+    <link name="link">
+      <collision name="c">
+        <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><plane><normal>0 0 1</normal><size>20 20</size></plane></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><ambient>0.8 0.8 0.8 1</ambient>
+          <pbr><metal><albedo_map>model://textured_ground/materials/textures/gravel.jpg</albedo_map>
+               <roughness>1</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

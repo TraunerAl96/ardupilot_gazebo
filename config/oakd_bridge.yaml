@@ -1,0 +1,54 @@
+# ros_gz_bridge config: Gazebo OAK-D Lite topics -> ROS 2 Jazzy
+# Run:  ros2 run ros_gz_bridge parameter_bridge --ros-args -p config_file:=config/oakd_bridge.yaml
+
+- ros_topic_name: /clock
+  gz_topic_name: /clock
+  ros_type_name: rosgraph_msgs/msg/Clock
+  gz_type_name: gz.msgs.Clock
+  direction: GZ_TO_ROS
+
+# --- stereo pair (realistic path) ---
+- ros_topic_name: /oakd/left/image_raw
+  gz_topic_name: /oakd/left/image
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: gz.msgs.Image
+  direction: GZ_TO_ROS
+- ros_topic_name: /oakd/left/camera_info
+  gz_topic_name: /oakd/left/camera_info
+  ros_type_name: sensor_msgs/msg/CameraInfo
+  gz_type_name: gz.msgs.CameraInfo
+  direction: GZ_TO_ROS
+- ros_topic_name: /oakd/right/image_raw
+  gz_topic_name: /oakd/right/image
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: gz.msgs.Image
+  direction: GZ_TO_ROS
+- ros_topic_name: /oakd/right/camera_info
+  gz_topic_name: /oakd/right/camera_info
+  ros_type_name: sensor_msgs/msg/CameraInfo
+  gz_type_name: gz.msgs.CameraInfo
+  direction: GZ_TO_ROS
+
+# --- colour camera ---
+- ros_topic_name: /oakd/rgb/image_raw
+  gz_topic_name: /oakd/rgb/image
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: gz.msgs.Image
+  direction: GZ_TO_ROS
+- ros_topic_name: /oakd/rgb/camera_info
+  gz_topic_name: /oakd/rgb/camera_info
+  ros_type_name: sensor_msgs/msg/CameraInfo
+  gz_type_name: gz.msgs.CameraInfo
+  direction: GZ_TO_ROS
+
+# --- ideal depth (ground truth, pixel-aligned with left) ---
+- ros_topic_name: /oakd/depth_gt/image
+  gz_topic_name: /oakd/depth/image
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: gz.msgs.Image
+  direction: GZ_TO_ROS
+- ros_topic_name: /oakd/depth_gt/points
+  gz_topic_name: /oakd/depth/image/points
+  ros_type_name: sensor_msgs/msg/PointCloud2
+  gz_type_name: gz.msgs.PointCloudPacked
+  direction: GZ_TO_ROS

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="chimney_oakd">
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <!-- 'ogre' (Ogre1): needed on the AMD 780M. Switch to ogre2 on other GPUs. -->
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+
+    <scene>
+      <ambient>0.6 0.6 0.6</ambient>
+      <background>0.75 0.82 0.9</background>
+      <sky></sky>
+    </scene>
+
+    <spherical_coordinates>
+      <latitude_deg>48.574</latitude_deg>
+      <longitude_deg>13.431</longitude_deg>
+      <elevation>310</elevation>
+      <heading_deg>0</heading_deg>
+      <surface_model>EARTH_WGS84</surface_model>
+    </spherical_coordinates>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.5 0.3 -0.9</direction>
+    </light>
+
+    <include>
+      <uri>model://textured_ground</uri>
+    </include>
+
+    <include>
+      <uri>model://chimney</uri>
+      <pose>3 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://iris_with_oakd</uri>
+      <pose degrees="true">0 0 0.195 0 0 90</pose>
+    </include>
+  </world>
+</sdf>

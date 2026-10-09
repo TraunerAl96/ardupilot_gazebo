@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+  Luxonis OAK-D Lite sensor head.
+  Camera convention in Gazebo: optical axis = +X of the sensor frame, image up = +Z,
+  image left = +Y.  So "left" camera sits at +Y (seen from behind the camera).
+  Sensors:
+    left / right : realistic stereo pair (OV7251, 640x480 mono, 72.9 deg HFOV, 75 mm baseline)
+    rgb          : centre colour camera (IMX214, simulated at 1280x960 / 15 Hz to save GPU)
+    depth        : IDEAL depth camera, co-located and identical to `left`
+                   -> pixel (u,v) in depth == pixel (u,v) in left image. Use as ground truth.
+-->
+<sdf version="1.9">
+  <model name="oakd_lite">
+    <link name="base_link">
+      <inertial>
+        <mass>0.061</mass>
+        <inertia><ixx>4.608e-05</ixx><iyy>5.542e-06</iyy><izz>4.365e-05</izz>
+                 <ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry><box><size>0.0175 0.091 0.028</size></box></geometry>
+      </collision>
+      <visual name="housing">
+        <geometry><box><size>0.0175 0.091 0.028</size></box></geometry>
+        <material><ambient>0.15 0.15 0.15 1</ambient><diffuse>0.2 0.2 0.2 1</diffuse></material>
+      </visual>
+
+      <sensor name="left" type="camera">
+        <pose>0.009 +0.0375 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>false</visualize>
+        <topic>oakd/left/image</topic>
+        <camera>
+          <horizontal_fov>1.2723</horizontal_fov>
+          <image><width>640</width><height>480</height><format>L8</format></image>
+          <clip><near>0.05</near><far>30</far></clip>
+          <noise><type>gaussian</type><mean>0</mean><stddev>0.007</stddev></noise>
+        </camera>
+      </sensor>
+
+      <sensor name="right" type="camera">
+        <pose>0.009 -0.0375 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>false</visualize>
+        <topic>oakd/right/image</topic>
+        <camera>
+          <horizontal_fov>1.2723</horizontal_fov>
+          <image><width>640</width><height>480</height><format>L8</format></image>
+          <clip><near>0.05</near><far>30</far></clip>
+          <noise><type>gaussian</type><mean>0</mean><stddev>0.007</stddev></noise>
+        </camera>
+      </sensor>
+
+      <sensor name="rgb" type="camera">
+        <pose>0.009 0 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>15</update_rate>
+        <visualize>false</visualize>
+        <topic>oakd/rgb/image</topic>
+        <camera>
+          <horizontal_fov>1.2043</horizontal_fov>
+          <image><width>1280</width><height>960</height><format>R8G8B8</format></image>
+          <clip><near>0.05</near><far>30</far></clip>
+          <noise><type>gaussian</type><mean>0</mean><stddev>0.005</stddev></noise>
+        </camera>
+      </sensor>
+
+      <sensor name="depth" type="depth_camera">
+        <pose>0.009 +0.0375 0 0 0 0</pose>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+        <visualize>false</visualize>
+        <topic>oakd/depth/image</topic>
+        <camera>
+          <horizontal_fov>1.2723</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R_FLOAT32</format></image>
+          <clip><near>0.1</near><far>20</far></clip>
+        </camera>
+      </sensor>
+    </link>
+  </model>
+</sdf>

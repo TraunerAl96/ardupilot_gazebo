@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!-- Open-top square brick chimney: 0.6 m outer, 0.12 m wall, 3.0 m high.
+     Textured on purpose: stereo matching needs surface texture. -->
+<sdf version="1.9">
+  <model name="chimney">
+    <static>true</static>
+    <link name="link">
+      <collision name="north_c"><pose>0 0.24 1.5 0 0 0</pose><geometry><box><size>0.6 0.12 3.0</size></box></geometry></collision>
+      <visual name="north_v"><pose>0 0.24 1.5 0 0 0</pose><geometry><box><size>0.6 0.12 3.0</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><ambient>0.8 0.8 0.8 1</ambient>
+          <pbr><metal><albedo_map>model://chimney/materials/textures/brick.jpg</albedo_map>
+               <roughness>0.95</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      <collision name="south_c"><pose>0 -0.24 1.5 0 0 0</pose><geometry><box><size>0.6 0.12 3.0</size></box></geometry></collision>
+      <visual name="south_v"><pose>0 -0.24 1.5 0 0 0</pose><geometry><box><size>0.6 0.12 3.0</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><ambient>0.8 0.8 0.8 1</ambient>
+          <pbr><metal><albedo_map>model://chimney/materials/textures/brick.jpg</albedo_map>
+               <roughness>0.95</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      <collision name="east_c"><pose>0.24 0 1.5 0 0 0</pose><geometry><box><size>0.12 0.36 3.0</size></box></geometry></collision>
+      <visual name="east_v"><pose>0.24 0 1.5 0 0 0</pose><geometry><box><size>0.12 0.36 3.0</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><ambient>0.8 0.8 0.8 1</ambient>
+          <pbr><metal><albedo_map>model://chimney/materials/textures/brick.jpg</albedo_map>
+               <roughness>0.95</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      <collision name="west_c"><pose>-0.24 0 1.5 0 0 0</pose><geometry><box><size>0.12 0.36 3.0</size></box></geometry></collision>
+      <visual name="west_v"><pose>-0.24 0 1.5 0 0 0</pose><geometry><box><size>0.12 0.36 3.0</size></box></geometry>
+        <material>
+          <diffuse>1 1 1 1</diffuse><ambient>0.8 0.8 0.8 1</ambient>
+          <pbr><metal><albedo_map>model://chimney/materials/textures/brick.jpg</albedo_map>
+               <roughness>0.95</roughness><metalness>0</metalness></metal></pbr>
+        </material>
+      </visual>
+      <visual name="flue_floor">
+        <pose>0 0 2.2 0 0 0</pose>
+        <geometry><box><size>0.36 0.36 0.02</size></box></geometry>
+        <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.08 0.07 0.07 1</diffuse></material>
+      </visual>
+    </link>
+  </model>
+</sdf>
